@@ -5,6 +5,7 @@
     android:id="@+id/parentLayout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="#FFFFFF"
     android:gravity="top"
     android:orientation="vertical"
     tools:context=".MainActivity">
@@ -29,24 +30,46 @@
         android:layout_marginTop="15dp"
         android:background="@color/headerView" />
 
+    <!--    <ImageView-->
+    <!--        android:id="@+id/canvasImageView"-->
+    <!--        android:layout_width="match_parent"-->
+    <!--        android:layout_height="600dp"-->
+    <!--        android:background="@android:color/white"-->
+    <!--        />-->
+
 
     <LinearLayout
         android:id="@+id/footerLayout"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:gravity="bottom"
+        android:gravity="top"
         android:orientation="vertical">
+
+
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginBottom="20dp"
+            android:layout_weight="1">
+
+            <com.example.doodle.DrawingView
+                android:id="@+id/drawing_view"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent" />
+        </FrameLayout>
+
 
         <androidx.cardview.widget.CardView
             android:id="@+id/cardView"
             android:layout_width="365dp"
-            android:layout_height="200dp"
+            android:layout_height="150dp"
             android:layout_below="@id/pallete"
             android:layout_gravity="center"
             android:layout_marginBottom="50dp"
+            android:visibility="gone"
             app:cardBackgroundColor="@color/card"
             app:cardCornerRadius="12dp"
-            app:cardElevation="50dp">
+            app:cardElevation="5dp">
 
             <LinearLayout
                 android:id="@+id/palleteLayout"
@@ -63,35 +86,126 @@
                     android:src="@drawable/demo" />
 
                 <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:layout_marginTop="-15dp"
+                    android:id="@+id/colorChoiceLayout"
+                    android:layout_width="310dp"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
                     android:orientation="horizontal">
 
-                    <TextView
-                        android:layout_width="79dp"
-                        android:layout_height="45dp"
-                        android:paddingLeft="10dp"
-                        android:paddingTop="8dp"
-                        android:text="Small"
-                        android:textSize="30px" />
+                    <com.google.android.material.button.MaterialButton
+                        android:id="@+id/redColor"
+                        style="@style/Widget.MaterialComponents.ExtendedFloatingActionButton"
+                        android:layout_width="20dp"
+                        android:layout_height="20dp"
+                        android:layout_marginLeft="13dp"
+                        android:layout_marginRight="25dp"
+                        android:backgroundTint="#FF0000"
+                        app:cornerRadius="28dp" />
 
-                    <SeekBar
-                        android:id="@+id/seekBar"
-                        android:layout_width="200dp"
-                        android:layout_height="38dp"
-                        android:max="5" />
+                    <com.google.android.material.button.MaterialButton
+                        android:id="@+id/yellowColor"
+                        style="@style/Widget.MaterialComponents.ExtendedFloatingActionButton"
+                        android:layout_width="20dp"
+                        android:layout_height="20dp"
+                        android:layout_marginRight="25dp"
+                        android:backgroundTint="#FFE500"
+                        app:cornerRadius="28dp" />
 
-                    <TextView
-                        android:layout_width="90dp"
-                        android:layout_height="45dp"
-                        android:layout_gravity="right"
-                        android:paddingLeft="10dp"
-                        android:paddingTop="8dp"
-                        android:text="Large"
-                        android:textSize="30px" />
+                    <com.google.android.material.button.MaterialButton
+                        android:id="@+id/greenColor"
+                        style="@style/Widget.MaterialComponents.ExtendedFloatingActionButton"
+                        android:layout_width="20dp"
+                        android:layout_height="20dp"
+                        android:layout_marginRight="25dp"
+                        android:backgroundTint="#00FF0A"
+                        app:cornerRadius="28dp" />
+
+                    <com.google.android.material.button.MaterialButton
+                        android:id="@+id/blueColor"
+                        style="@style/Widget.MaterialComponents.ExtendedFloatingActionButton"
+                        android:layout_width="20dp"
+                        android:layout_height="20dp"
+                        android:layout_marginRight="25dp"
+                        android:backgroundTint="#00B0FF"
+                        app:cornerRadius="28dp" />
+
+                    <com.google.android.material.button.MaterialButton
+                        android:id="@+id/purpleColor"
+                        style="@style/Widget.MaterialComponents.ExtendedFloatingActionButton"
+                        android:layout_width="20dp"
+                        android:layout_height="20dp"
+                        android:layout_marginRight="25dp"
+                        android:backgroundTint="#DA00FF"
+                        android:shadowColor="#FFFFFF"
+                        app:cornerRadius="28dp" />
+
+                    <com.google.android.material.button.MaterialButton
+                        android:id="@+id/blackColor"
+                        style="@style/Widget.MaterialComponents.ExtendedFloatingActionButton"
+                        android:layout_width="20dp"
+                        android:layout_height="20dp"
+                        android:layout_marginRight="20dp"
+                        android:backgroundTint="#000000"
+                        app:cornerRadius="28dp" />
+
+                    <!--                    <Button-->
+                    <!--                        android:layout_width="wrap_content"-->
+                    <!--                        android:layout_height="match_parent"/>-->
+
+                    <!--                    <Button-->
+                    <!--                        android:layout_width="wrap_content"-->
+                    <!--                        android:layout_height="match_parent"/>-->
+
+                    <!--                    <Button-->
+                    <!--                        android:layout_width="wrap_content"-->
+                    <!--                        android:layout_height="match_parent"/>-->
+
+                    <!--                    <Button-->
+                    <!--                        android:layout_width="wrap_content"-->
+                    <!--                        android:layout_height="match_parent"/>-->
 
                 </LinearLayout>
+
+                <SeekBar
+                    android:id="@+id/seekBar"
+                    android:layout_width="320dp"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_marginTop="20dp"
+                    android:max="5"
+                    android:thumb="@drawable/thumb_image"
+                    android:thumbTint="#878484" />
+
+                <!--                <LinearLayout-->
+                <!--                    android:layout_width="match_parent"-->
+                <!--                    android:layout_height="match_parent"-->
+                <!--                    android:layout_marginTop="-15dp"-->
+                <!--                    android:orientation="horizontal">-->
+
+                <!--                    <TextView-->
+                <!--                        android:layout_width="79dp"-->
+                <!--                        android:layout_height="45dp"-->
+                <!--                        android:paddingLeft="10dp"-->
+                <!--                        android:paddingTop="8dp"-->
+                <!--                        android:text="Small"-->
+                <!--                        android:textSize="30px" />-->
+
+                <!--                    <SeekBar-->
+                <!--                        android:id="@+id/seekBar"-->
+                <!--                        android:layout_width="200dp"-->
+                <!--                        android:layout_height="38dp"-->
+                <!--                        android:max="5" />-->
+
+                <!--                    <TextView-->
+                <!--                        android:layout_width="90dp"-->
+                <!--                        android:layout_height="45dp"-->
+                <!--                        android:layout_gravity="right"-->
+                <!--                        android:paddingLeft="10dp"-->
+                <!--                        android:paddingTop="8dp"-->
+                <!--                        android:text="Large"-->
+                <!--                        android:textSize="30px" />-->
+
+                <!--                </LinearLayout>-->
 
             </LinearLayout>
 
@@ -111,7 +225,7 @@
                 android:layout_gravity="start"
                 android:layout_marginStart="40dp"
                 android:layout_marginBottom="20dp"
-                android:background="#FFFFFF"
+                android:background="#00FFFFFF"
                 android:focusable="true"
                 android:src="@drawable/brush" />
 
@@ -122,7 +236,7 @@
                 android:layout_gravity="start"
                 android:layout_marginStart="50dp"
                 android:layout_marginBottom="20dp"
-                android:background="#FFFFFF"
+                android:background="#00FFFFFF"
                 android:focusable="true"
                 android:src="@drawable/eraser" />
 
@@ -133,7 +247,7 @@
                 android:layout_gravity="start"
                 android:layout_marginStart="50dp"
                 android:layout_marginBottom="20dp"
-                android:background="#FFFFFF"
+                android:background="#00FFFFFF"
                 android:focusable="true"
                 android:src="@drawable/arrow_left" />
 
@@ -144,7 +258,7 @@
                 android:layout_gravity="start"
                 android:layout_marginStart="50dp"
                 android:layout_marginBottom="20dp"
-                android:background="#FFFFFF"
+                android:background="#00FFFFFF"
                 android:focusable="true"
                 android:src="@drawable/arrow_right" />
 
@@ -155,7 +269,7 @@
                 android:layout_gravity="start"
                 android:layout_marginStart="50dp"
                 android:layout_marginBottom="20dp"
-                android:background="#FFFFFF"
+                android:background="#00FFFFFF"
                 android:focusable="true"
                 android:src="@drawable/trash" />
         </LinearLayout>
