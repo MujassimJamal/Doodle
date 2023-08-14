@@ -16,8 +16,8 @@ public class DrawingView extends View {
     private Paint drawPaint;
 
     private int lineColor = Color.RED;
-    private Stack<Path> pathHistory = new Stack<>();
-    private Stack<Path> undonePaths = new Stack<>();
+    private final Stack<Path> pathHistory = new Stack<>();
+    private final Stack<Path> undonePaths = new Stack<>();
 
     public DrawingView(Context context, AttributeSet attrs) {
         super(context, attrs);

@@ -82,8 +82,8 @@
                     android:id="@+id/lineImageView"
                     android:layout_width="250dp"
                     android:layout_height="30dp"
-                    android:layout_marginTop="15dp"
-                    android:layout_gravity="center"/>
+                    android:layout_gravity="center"
+                    android:layout_marginTop="18dp" />
 
 
                 <SeekBar
@@ -91,8 +91,9 @@
                     android:layout_width="320dp"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
-                    android:layout_marginTop="15dp"
+                    android:layout_marginTop="13dp"
                     android:max="5"
+                    android:min="0"
                     android:thumb="@drawable/thumb_image"
                     android:thumbTint="#878484" />
 
