@@ -66,7 +66,7 @@
             android:layout_below="@id/pallete"
             android:layout_gravity="center"
             android:layout_marginBottom="50dp"
-            android:visibility="gone"
+            android:visibility="visible"
             app:cardBackgroundColor="@color/card"
             app:cardCornerRadius="12dp"
             app:cardElevation="5dp">
@@ -77,19 +77,31 @@
                 android:layout_height="match_parent"
                 android:orientation="vertical">
 
-                <ImageView
-                    android:id="@+id/demo"
-                    android:layout_width="match_parent"
+
+                <com.example.doodle.LineImageView
+                    android:id="@+id/lineImageView"
+                    android:layout_width="250dp"
+                    android:layout_height="30dp"
+                    android:layout_marginTop="15dp"
+                    android:layout_gravity="center"/>
+
+
+                <SeekBar
+                    android:id="@+id/seekBar"
+                    android:layout_width="320dp"
                     android:layout_height="wrap_content"
-                    android:layout_margin="16dp"
-                    android:max="100"
-                    android:src="@drawable/demo" />
+                    android:layout_gravity="center"
+                    android:layout_marginTop="15dp"
+                    android:max="5"
+                    android:thumb="@drawable/thumb_image"
+                    android:thumbTint="#878484" />
 
                 <LinearLayout
                     android:id="@+id/colorChoiceLayout"
-                    android:layout_width="310dp"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
+                    android:layout_marginTop="30dp"
                     android:orientation="horizontal">
 
                     <com.google.android.material.button.MaterialButton
@@ -148,64 +160,8 @@
                         android:backgroundTint="#000000"
                         app:cornerRadius="28dp" />
 
-                    <!--                    <Button-->
-                    <!--                        android:layout_width="wrap_content"-->
-                    <!--                        android:layout_height="match_parent"/>-->
-
-                    <!--                    <Button-->
-                    <!--                        android:layout_width="wrap_content"-->
-                    <!--                        android:layout_height="match_parent"/>-->
-
-                    <!--                    <Button-->
-                    <!--                        android:layout_width="wrap_content"-->
-                    <!--                        android:layout_height="match_parent"/>-->
-
-                    <!--                    <Button-->
-                    <!--                        android:layout_width="wrap_content"-->
-                    <!--                        android:layout_height="match_parent"/>-->
-
                 </LinearLayout>
 
-                <SeekBar
-                    android:id="@+id/seekBar"
-                    android:layout_width="320dp"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center"
-                    android:layout_marginTop="20dp"
-                    android:max="5"
-                    android:thumb="@drawable/thumb_image"
-                    android:thumbTint="#878484" />
-
-                <!--                <LinearLayout-->
-                <!--                    android:layout_width="match_parent"-->
-                <!--                    android:layout_height="match_parent"-->
-                <!--                    android:layout_marginTop="-15dp"-->
-                <!--                    android:orientation="horizontal">-->
-
-                <!--                    <TextView-->
-                <!--                        android:layout_width="79dp"-->
-                <!--                        android:layout_height="45dp"-->
-                <!--                        android:paddingLeft="10dp"-->
-                <!--                        android:paddingTop="8dp"-->
-                <!--                        android:text="Small"-->
-                <!--                        android:textSize="30px" />-->
-
-                <!--                    <SeekBar-->
-                <!--                        android:id="@+id/seekBar"-->
-                <!--                        android:layout_width="200dp"-->
-                <!--                        android:layout_height="38dp"-->
-                <!--                        android:max="5" />-->
-
-                <!--                    <TextView-->
-                <!--                        android:layout_width="90dp"-->
-                <!--                        android:layout_height="45dp"-->
-                <!--                        android:layout_gravity="right"-->
-                <!--                        android:paddingLeft="10dp"-->
-                <!--                        android:paddingTop="8dp"-->
-                <!--                        android:text="Large"-->
-                <!--                        android:textSize="30px" />-->
-
-                <!--                </LinearLayout>-->
 
             </LinearLayout>
 

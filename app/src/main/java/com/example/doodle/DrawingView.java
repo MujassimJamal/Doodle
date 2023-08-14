@@ -14,6 +14,8 @@ import java.util.Stack;
 public class DrawingView extends View {
     private Path drawPath;
     private Paint drawPaint;
+
+    private int lineColor = Color.RED;
     private Stack<Path> pathHistory = new Stack<>();
     private Stack<Path> undonePaths = new Stack<>();
 
@@ -25,9 +27,9 @@ public class DrawingView extends View {
     private void setupDrawing() {
         drawPath = new Path();
         drawPaint = new Paint();
-        drawPaint.setColor(Color.BLACK);
+        drawPaint.setColor(lineColor);
         drawPaint.setAntiAlias(true);
-        drawPaint.setStrokeWidth(5);
+        drawPaint.setStrokeWidth(10);
         drawPaint.setStyle(Paint.Style.STROKE);
         drawPaint.setStrokeJoin(Paint.Join.ROUND);
         drawPaint.setStrokeCap(Paint.Cap.ROUND);
@@ -87,5 +89,10 @@ public class DrawingView extends View {
         undonePaths.clear();
         drawPath.reset();
         invalidate();
+    }
+
+    public void setLineColor(int color) {
+        lineColor = color;
+        drawPaint.setColor(lineColor);
     }
 }
