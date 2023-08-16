@@ -216,7 +216,7 @@ public class MainActivity extends AppCompatActivity {
                 .setPositiveButton("Clear", new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialog, int whichButton) {
                         drawingView.clearDrawing();
-                        cardView.setVisibility(View.GONE);
+//                        cardView.setVisibility(View.GONE);
                     }
                 })
                 .setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
