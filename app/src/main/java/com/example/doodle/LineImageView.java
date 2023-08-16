@@ -29,7 +29,7 @@ public class LineImageView extends AppCompatImageView {
     private void init() {
         linePaint = new Paint();
         linePaint.setColor(lineColor); // Set your desired line color
-        linePaint.setStrokeWidth(10); // Set your desired line width
+        linePaint.setStrokeWidth(lineStroke); // Set your desired line width
         linePaint.setStyle(Paint.Style.STROKE);
     }
 

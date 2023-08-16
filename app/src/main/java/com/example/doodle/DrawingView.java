@@ -12,12 +12,23 @@ import android.view.View;
 import java.util.Stack;
 
 public class DrawingView extends View {
+    private class PathWithStyle {
+        Path path;
+        Paint paint;
+
+        PathWithStyle(Path path, Paint paint) {
+            this.path = path;
+            this.paint = paint;
+        }
+    }
+
     private Path drawPath;
     private Paint drawPaint;
 
+    private Stack<PathWithStyle> pathHistory = new Stack<>();
+    private Stack<PathWithStyle> undonePaths = new Stack<>();
     private int lineColor = Color.RED;
-    private final Stack<Path> pathHistory = new Stack<>();
-    private final Stack<Path> undonePaths = new Stack<>();
+    private float strokeWidth = 10;
 
     public DrawingView(Context context, AttributeSet attrs) {
         super(context, attrs);
@@ -27,19 +38,19 @@ public class DrawingView extends View {
     private void setupDrawing() {
         drawPath = new Path();
         drawPaint = new Paint();
-        drawPaint.setColor(lineColor);
         drawPaint.setAntiAlias(true);
-        drawPaint.setStrokeWidth(10);
         drawPaint.setStyle(Paint.Style.STROKE);
         drawPaint.setStrokeJoin(Paint.Join.ROUND);
         drawPaint.setStrokeCap(Paint.Cap.ROUND);
+        drawPaint.setStrokeWidth(strokeWidth);
+        drawPaint.setColor(lineColor);
     }
 
     @Override
     protected void onDraw(Canvas canvas) {
         super.onDraw(canvas);
-        for (Path path : pathHistory) {
-            canvas.drawPath(path, drawPaint);
+        for (PathWithStyle pathWithStyle : pathHistory) {
+            canvas.drawPath(pathWithStyle.path, pathWithStyle.paint);
         }
         canvas.drawPath(drawPath, drawPaint);
     }
@@ -59,7 +70,8 @@ public class DrawingView extends View {
                 drawPath.lineTo(touchX, touchY);
                 break;
             case MotionEvent.ACTION_UP:
-                pathHistory.push(new Path(drawPath));
+                Paint pathPaint = new Paint(drawPaint);
+                pathHistory.push(new PathWithStyle(new Path(drawPath), pathPaint));
                 drawPath.reset();
                 break;
             default:
@@ -94,5 +106,10 @@ public class DrawingView extends View {
     public void setLineColor(int color) {
         lineColor = color;
         drawPaint.setColor(lineColor);
+    }
+
+    public void setLineStroke(float width) {
+        strokeWidth = width;
+        drawPaint.setStrokeWidth(strokeWidth);
     }
 }

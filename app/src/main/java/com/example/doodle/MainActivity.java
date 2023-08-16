@@ -90,6 +90,9 @@ public class MainActivity extends AppCompatActivity {
                 // Hide CardView
                 cardView.setVisibility(View.GONE);
 
+                //Set White Color as so the background.
+                drawingView.setLineColor(Color.WHITE);
+                drawingView.setLineStroke(15);
             }
         });
         undo.setOnClickListener(new View.OnClickListener() {
@@ -123,7 +126,6 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 showAlertDialog();
-                cardView.setVisibility(View.GONE);
             }
         });
 
@@ -131,6 +133,7 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 lineImageView.setLineColor(Color.parseColor("#FF0000"));
+                drawingView.setLineColor(Color.parseColor("#FF0000"));
             }
         });
 
@@ -180,6 +183,7 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onProgressChanged(SeekBar seekBar, int i, boolean b) {
                 lineImageView.setLineStroke((i + 1) * 10);
+                drawingView.setLineStroke((i + 1) * 10);
             }
 
             @Override
@@ -212,6 +216,7 @@ public class MainActivity extends AppCompatActivity {
                 .setPositiveButton("Clear", new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialog, int whichButton) {
                         drawingView.clearDrawing();
+                        cardView.setVisibility(View.GONE);
                     }
                 })
                 .setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
