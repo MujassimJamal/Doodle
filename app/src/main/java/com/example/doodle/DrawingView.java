@@ -1,6 +1,7 @@
 package com.example.doodle;
 
 import android.content.Context;
+import android.graphics.Bitmap;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
@@ -27,8 +28,8 @@ public class DrawingView extends View {
 
     private Stack<PathWithStyle> pathHistory = new Stack<>();
     private Stack<PathWithStyle> undonePaths = new Stack<>();
-    private int lineColor = Color.RED;
-    private float strokeWidth = 10;
+    protected int lineColor = Color.RED;
+    protected float strokeWidth = 10;
 
     public DrawingView(Context context, AttributeSet attrs) {
         super(context, attrs);
@@ -112,4 +113,22 @@ public class DrawingView extends View {
         strokeWidth = width;
         drawPaint.setStrokeWidth(strokeWidth);
     }
+
+    public void setEraserColor(int color) {
+//        lineColor = color;
+        drawPaint.setColor(color);
+    }
+
+    public void setEraserStroke(float width) {
+//        strokeWidth = width;
+        drawPaint.setStrokeWidth(width);
+    }
+
+    public Bitmap getDrawingBitmap() {
+        Bitmap bitmap = Bitmap.createBitmap(getWidth(), getHeight(), Bitmap.Config.ARGB_8888);
+        Canvas canvas = new Canvas(bitmap);
+        draw(canvas);
+        return bitmap;
+    }
+
 }

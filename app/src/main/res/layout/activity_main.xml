@@ -172,7 +172,7 @@
             android:id="@+id/iconLayout"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_gravity="bottom"
+            android:layout_gravity="bottom|center"
             android:orientation="horizontal">
 
             <ImageButton
@@ -180,11 +180,12 @@
                 android:layout_width="25dp"
                 android:layout_height="25dp"
                 android:layout_gravity="start"
-                android:layout_marginStart="40dp"
+
                 android:layout_marginBottom="20dp"
                 android:background="#00FFFFFF"
                 android:focusable="true"
                 android:src="@drawable/brush" />
+<!--            android:layout_marginStart="40dp"-->
 
             <ImageButton
                 android:id="@+id/erase"

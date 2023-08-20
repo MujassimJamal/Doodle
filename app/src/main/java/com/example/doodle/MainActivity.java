@@ -77,6 +77,8 @@ public class MainActivity extends AppCompatActivity {
                 }
 
                 cardView.setVisibility(palleteVisibility);
+                drawingView.setLineColor(drawingView.lineColor);
+                drawingView.setLineStroke(drawingView.strokeWidth);
 
             }
         });
@@ -91,8 +93,9 @@ public class MainActivity extends AppCompatActivity {
                 cardView.setVisibility(View.GONE);
 
                 //Set White Color as so the background.
-                drawingView.setLineColor(Color.WHITE);
-                drawingView.setLineStroke(15);
+                drawingView.setEraserColor(Color.WHITE);
+//                drawingView.setLineStroke(15);
+                drawingView.setEraserStroke(15);
             }
         });
         undo.setOnClickListener(new View.OnClickListener() {
@@ -225,11 +228,14 @@ public class MainActivity extends AppCompatActivity {
                     }
                 });
         AlertDialog alertDialog = builder.create();
+        alertDialog.getWindow().setBackgroundDrawableResource(R.drawable.rounded_alert);
         alertDialog.show();
 
         WindowManager.LayoutParams layoutParams = new WindowManager.LayoutParams();
         layoutParams.copyFrom(alertDialog.getWindow().getAttributes());
         layoutParams.gravity = Gravity.BOTTOM;
+        layoutParams.y = 60;
+
         alertDialog.getWindow().setAttributes(layoutParams);
     }
 }
