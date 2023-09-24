@@ -1,7 +1,6 @@
 package com.example.doodle;
 
 import android.content.Context;
-import android.graphics.Bitmap;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
@@ -9,7 +8,6 @@ import android.graphics.Path;
 import android.util.AttributeSet;
 import android.view.MotionEvent;
 import android.view.View;
-
 import java.util.Stack;
 
 public class DrawingView extends View {
@@ -115,20 +113,10 @@ public class DrawingView extends View {
     }
 
     public void setEraserColor(int color) {
-//        lineColor = color;
         drawPaint.setColor(color);
     }
 
     public void setEraserStroke(float width) {
-//        strokeWidth = width;
         drawPaint.setStrokeWidth(width);
     }
-
-    public Bitmap getDrawingBitmap() {
-        Bitmap bitmap = Bitmap.createBitmap(getWidth(), getHeight(), Bitmap.Config.ARGB_8888);
-        Canvas canvas = new Canvas(bitmap);
-        draw(canvas);
-        return bitmap;
-    }
-
 }

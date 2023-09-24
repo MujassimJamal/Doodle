@@ -3,9 +3,7 @@ package com.example.doodle;
 import android.content.Context;
 import android.graphics.Canvas;
 import android.graphics.Color;
-import android.graphics.CornerPathEffect;
 import android.graphics.Paint;
-import android.graphics.PathEffect;
 import android.util.AttributeSet;
 
 import androidx.annotation.Nullable;
@@ -28,8 +26,8 @@ public class LineImageView extends AppCompatImageView {
 
     private void init() {
         linePaint = new Paint();
-        linePaint.setColor(lineColor); // Set your desired line color
-        linePaint.setStrokeWidth(lineStroke); // Set your desired line width
+        linePaint.setColor(lineColor);
+        linePaint.setStrokeWidth(lineStroke);
         linePaint.setStyle(Paint.Style.STROKE);
     }
 
@@ -44,12 +42,12 @@ public class LineImageView extends AppCompatImageView {
     public void setLineColor(int color) {
         lineColor = color;
         linePaint.setColor(lineColor);
-        invalidate(); // Force redraw
+        invalidate();
     }
 
     public void setLineStroke(int stroke) {
         lineStroke = stroke;
         linePaint.setStrokeWidth(lineStroke);
-        invalidate(); // Force redraw
+        invalidate();
     }
 }

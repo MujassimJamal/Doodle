@@ -6,15 +6,9 @@ import android.graphics.Color;
 import android.graphics.drawable.VectorDrawable;
 import android.os.Bundle;
 import android.view.Gravity;
-import android.view.LayoutInflater;
 import android.view.View;
-import android.view.WindowManager;
-import android.widget.Button;
 import android.widget.ImageButton;
-import android.widget.ImageView;
-import android.widget.LinearLayout;
 import android.widget.SeekBar;
-import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.cardview.widget.CardView;
@@ -27,14 +21,11 @@ public class MainActivity extends AppCompatActivity {
     ImageButton pallete, erase, undo, redo, clear;
     DrawingView drawingView;
     SeekBar seekbar;
-
     CardView cardView;
-
     LineImageView lineImageView;
     MaterialButton redBtn, yellowBtn, greenBtn, blueBtn, purpleBtn, blackBtn;
 
     private int palleteVisibility = View.GONE;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -75,11 +66,9 @@ public class MainActivity extends AppCompatActivity {
                 } else {
                     palleteVisibility = View.GONE;
                 }
-
                 cardView.setVisibility(palleteVisibility);
                 drawingView.setLineColor(drawingView.lineColor);
                 drawingView.setLineStroke(drawingView.strokeWidth);
-
             }
         });
         erase.setOnClickListener(new View.OnClickListener() {
@@ -88,13 +77,8 @@ public class MainActivity extends AppCompatActivity {
                 unfillAll(brush, eraser, arrow_left, arrow_right);
                 eraser.setTint(ContextCompat.getColor(getApplicationContext(), R.color.iconFocused));
                 erase.setImageDrawable(eraser);
-
-                // Hide CardView
                 cardView.setVisibility(View.GONE);
-
-                //Set White Color as so the background.
                 drawingView.setEraserColor(Color.WHITE);
-//                drawingView.setLineStroke(15);
                 drawingView.setEraserStroke(15);
             }
         });
@@ -104,9 +88,7 @@ public class MainActivity extends AppCompatActivity {
                 unfillAll(brush, eraser, arrow_left, arrow_right);
                 arrow_left.setTint(ContextCompat.getColor(getApplicationContext(), R.color.iconFocused));
                 undo.setImageDrawable(arrow_left);
-
                 drawingView.undo();
-
                 cardView.setVisibility(View.GONE);
 
             }
@@ -117,11 +99,8 @@ public class MainActivity extends AppCompatActivity {
                 unfillAll(brush, eraser, arrow_left, arrow_right);
                 arrow_right.setTint(ContextCompat.getColor(getApplicationContext(), R.color.iconFocused));
                 redo.setImageDrawable(arrow_right);
-
                 drawingView.redo();
-
                 cardView.setVisibility(View.GONE);
-
             }
         });
 
@@ -140,7 +119,6 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        // Colors
         yellowBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -181,7 +159,6 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        // Seekbar
         seekbar.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
             @Override
             public void onProgressChanged(SeekBar seekBar, int i, boolean b) {
@@ -190,14 +167,10 @@ public class MainActivity extends AppCompatActivity {
             }
 
             @Override
-            public void onStartTrackingTouch(SeekBar seekBar) {
-
-            }
+            public void onStartTrackingTouch(SeekBar seekBar) {}
 
             @Override
-            public void onStopTrackingTouch(SeekBar seekBar) {
-
-            }
+            public void onStopTrackingTouch(SeekBar seekBar) {}
         });
     }
 
@@ -219,23 +192,18 @@ public class MainActivity extends AppCompatActivity {
                 .setPositiveButton("Clear", new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialog, int whichButton) {
                         drawingView.clearDrawing();
-//                        cardView.setVisibility(View.GONE);
                     }
                 })
                 .setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialog, int whichButton) {
-                        // Handle Cancel button click
+
                     }
                 });
+
         AlertDialog alertDialog = builder.create();
         alertDialog.getWindow().setBackgroundDrawableResource(R.drawable.rounded_alert);
+        alertDialog.getWindow().setGravity(Gravity.BOTTOM);
+        alertDialog.getWindow().getAttributes().y = 60;
         alertDialog.show();
-
-        WindowManager.LayoutParams layoutParams = new WindowManager.LayoutParams();
-        layoutParams.copyFrom(alertDialog.getWindow().getAttributes());
-        layoutParams.gravity = Gravity.BOTTOM;
-        layoutParams.y = 60;
-
-        alertDialog.getWindow().setAttributes(layoutParams);
     }
 }

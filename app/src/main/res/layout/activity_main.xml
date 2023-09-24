@@ -18,24 +18,13 @@
         android:text="Doodle"
         android:textAlignment="center"
         android:textSize="18sp"
-        android:textStyle="normal"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        android:textStyle="normal"/>
 
     <View
         android:layout_width="match_parent"
         android:layout_height="1dp"
         android:layout_marginTop="15dp"
         android:background="@color/headerView" />
-
-    <!--    <ImageView-->
-    <!--        android:id="@+id/canvasImageView"-->
-    <!--        android:layout_width="match_parent"-->
-    <!--        android:layout_height="600dp"-->
-    <!--        android:background="@android:color/white"-->
-    <!--        />-->
 
 
     <LinearLayout
@@ -160,10 +149,7 @@
                         android:layout_marginRight="20dp"
                         android:backgroundTint="#000000"
                         app:cornerRadius="28dp" />
-
                 </LinearLayout>
-
-
             </LinearLayout>
 
         </androidx.cardview.widget.CardView>
