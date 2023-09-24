@@ -18,7 +18,7 @@
         android:text="Doodle"
         android:textAlignment="center"
         android:textSize="18sp"
-        android:textStyle="normal"/>
+        android:textStyle="normal" />
 
     <View
         android:layout_width="match_parent"
@@ -34,19 +34,12 @@
         android:gravity="top"
         android:orientation="vertical">
 
-
-        <FrameLayout
+        <com.example.doodle.DrawingView
+            android:id="@+id/drawing_view"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_marginBottom="20dp"
-            android:layout_weight="1">
-
-            <com.example.doodle.DrawingView
-                android:id="@+id/drawing_view"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent" />
-        </FrameLayout>
-
+            android:layout_weight="1" />
 
         <androidx.cardview.widget.CardView
             android:id="@+id/cardView"
@@ -163,22 +156,20 @@
 
             <ImageButton
                 android:id="@+id/pallete"
-                android:layout_width="25dp"
-                android:layout_height="25dp"
+                android:layout_width="35dp"
+                android:layout_height="35dp"
                 android:layout_gravity="start"
-
                 android:layout_marginBottom="20dp"
                 android:background="#00FFFFFF"
                 android:focusable="true"
                 android:src="@drawable/brush" />
-<!--            android:layout_marginStart="40dp"-->
 
             <ImageButton
                 android:id="@+id/erase"
-                android:layout_width="25dp"
-                android:layout_height="25dp"
+                android:layout_width="35dp"
+                android:layout_height="35dp"
                 android:layout_gravity="start"
-                android:layout_marginStart="50dp"
+                android:layout_marginStart="40dp"
                 android:layout_marginBottom="20dp"
                 android:background="#00FFFFFF"
                 android:focusable="true"
@@ -186,10 +177,10 @@
 
             <ImageButton
                 android:id="@+id/undo"
-                android:layout_width="25dp"
-                android:layout_height="25dp"
+                android:layout_width="35dp"
+                android:layout_height="35dp"
                 android:layout_gravity="start"
-                android:layout_marginStart="50dp"
+                android:layout_marginStart="40dp"
                 android:layout_marginBottom="20dp"
                 android:background="#00FFFFFF"
                 android:focusable="true"
@@ -197,10 +188,10 @@
 
             <ImageButton
                 android:id="@+id/redo"
-                android:layout_width="25dp"
-                android:layout_height="25dp"
+                android:layout_width="35dp"
+                android:layout_height="35dp"
                 android:layout_gravity="start"
-                android:layout_marginStart="50dp"
+                android:layout_marginStart="40dp"
                 android:layout_marginBottom="20dp"
                 android:background="#00FFFFFF"
                 android:focusable="true"
@@ -208,10 +199,10 @@
 
             <ImageButton
                 android:id="@+id/clear"
-                android:layout_width="25dp"
-                android:layout_height="25dp"
+                android:layout_width="35dp"
+                android:layout_height="35dp"
                 android:layout_gravity="start"
-                android:layout_marginStart="50dp"
+                android:layout_marginStart="40dp"
                 android:layout_marginBottom="20dp"
                 android:background="#00FFFFFF"
                 android:focusable="true"
