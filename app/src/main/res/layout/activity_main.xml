@@ -5,8 +5,7 @@
     android:id="@+id/parentLayout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#FFFFFF"
-    android:gravity="top"
+    android:background="@color/white"
     android:orientation="vertical"
     tools:context=".MainActivity">
 
@@ -14,30 +13,29 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:fontFamily="sans-serif"
-        android:paddingTop="12dp"
-        android:text="Doodle"
+        android:padding="10dp"
+        android:text="@string/app_name"
         android:textAlignment="center"
         android:textSize="18sp"
         android:textStyle="normal" />
 
     <View
         android:layout_width="match_parent"
-        android:layout_height="1dp"
-        android:layout_marginTop="15dp"
+        android:layout_height="2dp"
+        android:layout_marginTop="5dp"
+        android:layout_marginBottom="5dp"
         android:background="@color/headerView" />
-
 
     <LinearLayout
         android:id="@+id/footerLayout"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:gravity="top"
         android:orientation="vertical">
 
         <com.example.doodle.DrawingView
             android:id="@+id/drawing_view"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_height="0dp"
             android:layout_marginBottom="20dp"
             android:layout_weight="1" />
 
@@ -45,11 +43,10 @@
             android:id="@+id/cardView"
             android:layout_width="365dp"
             android:layout_height="150dp"
-            android:layout_below="@id/pallete"
             android:layout_gravity="center"
-            android:layout_marginBottom="50dp"
+            android:layout_marginBottom="25dp"
             android:visibility="visible"
-            app:cardBackgroundColor="@color/card"
+            app:cardBackgroundColor="@color/white"
             app:cardCornerRadius="12dp"
             app:cardElevation="5dp">
 
@@ -59,32 +56,32 @@
                 android:layout_height="match_parent"
                 android:orientation="vertical">
 
-
                 <com.example.doodle.LineImageView
                     android:id="@+id/lineImageView"
                     android:layout_width="250dp"
                     android:layout_height="30dp"
                     android:layout_gravity="center"
-                    android:layout_marginTop="18dp" />
-
+                    android:layout_margin="15dp" />
 
                 <SeekBar
                     android:id="@+id/seekBar"
                     android:layout_width="320dp"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
-                    android:layout_marginTop="13dp"
+                    android:layout_margin="5dp"
                     android:max="5"
                     android:min="0"
                     android:thumb="@drawable/thumb_image"
-                    android:thumbTint="#878484" />
+                    android:thumbTint="#878484"
+                    tools:targetApi="o" />
 
                 <LinearLayout
                     android:id="@+id/colorChoiceLayout"
                     android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                    android:layout_height="35dp"
                     android:layout_gravity="center"
-                    android:layout_marginTop="30dp"
+                    android:layout_margin="20dp"
+                    android:padding="2dp"
                     android:orientation="horizontal">
 
                     <com.google.android.material.button.MaterialButton
@@ -92,8 +89,7 @@
                         style="@style/Widget.MaterialComponents.ExtendedFloatingActionButton"
                         android:layout_width="20dp"
                         android:layout_height="20dp"
-                        android:layout_marginLeft="13dp"
-                        android:layout_marginRight="25dp"
+                        android:layout_margin="5dp"
                         android:backgroundTint="#FF0000"
                         app:cornerRadius="28dp" />
 
@@ -102,7 +98,7 @@
                         style="@style/Widget.MaterialComponents.ExtendedFloatingActionButton"
                         android:layout_width="20dp"
                         android:layout_height="20dp"
-                        android:layout_marginRight="25dp"
+                        android:layout_margin="5dp"
                         android:backgroundTint="#FFE500"
                         app:cornerRadius="28dp" />
 
@@ -111,7 +107,7 @@
                         style="@style/Widget.MaterialComponents.ExtendedFloatingActionButton"
                         android:layout_width="20dp"
                         android:layout_height="20dp"
-                        android:layout_marginRight="25dp"
+                        android:layout_margin="5dp"
                         android:backgroundTint="#00FF0A"
                         app:cornerRadius="28dp" />
 
@@ -120,7 +116,7 @@
                         style="@style/Widget.MaterialComponents.ExtendedFloatingActionButton"
                         android:layout_width="20dp"
                         android:layout_height="20dp"
-                        android:layout_marginRight="25dp"
+                        android:layout_margin="5dp"
                         android:backgroundTint="#00B0FF"
                         app:cornerRadius="28dp" />
 
@@ -129,7 +125,7 @@
                         style="@style/Widget.MaterialComponents.ExtendedFloatingActionButton"
                         android:layout_width="20dp"
                         android:layout_height="20dp"
-                        android:layout_marginRight="25dp"
+                        android:layout_margin="5dp"
                         android:backgroundTint="#DA00FF"
                         android:shadowColor="#FFFFFF"
                         app:cornerRadius="28dp" />
@@ -139,19 +135,19 @@
                         style="@style/Widget.MaterialComponents.ExtendedFloatingActionButton"
                         android:layout_width="20dp"
                         android:layout_height="20dp"
-                        android:layout_marginRight="20dp"
+                        android:layout_margin="5dp"
                         android:backgroundTint="#000000"
                         app:cornerRadius="28dp" />
                 </LinearLayout>
             </LinearLayout>
-
         </androidx.cardview.widget.CardView>
 
         <LinearLayout
             android:id="@+id/iconLayout"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_gravity="bottom|center"
+            android:gravity="center"
+            android:padding="10dp"
             android:orientation="horizontal">
 
             <ImageButton
@@ -159,54 +155,54 @@
                 android:layout_width="35dp"
                 android:layout_height="35dp"
                 android:layout_gravity="start"
-                android:layout_marginBottom="20dp"
                 android:background="#00FFFFFF"
                 android:focusable="true"
-                android:src="@drawable/brush" />
+                android:layout_marginEnd="30dp"
+                android:src="@drawable/brush"
+                android:contentDescription="@string/palette_img_content" />
 
             <ImageButton
                 android:id="@+id/erase"
                 android:layout_width="35dp"
                 android:layout_height="35dp"
                 android:layout_gravity="start"
-                android:layout_marginStart="40dp"
-                android:layout_marginBottom="20dp"
                 android:background="#00FFFFFF"
                 android:focusable="true"
-                android:src="@drawable/eraser" />
+                android:layout_marginEnd="30dp"
+                android:src="@drawable/eraser"
+                android:contentDescription="@string/erase_img_content" />
 
             <ImageButton
                 android:id="@+id/undo"
                 android:layout_width="35dp"
                 android:layout_height="35dp"
                 android:layout_gravity="start"
-                android:layout_marginStart="40dp"
-                android:layout_marginBottom="20dp"
                 android:background="#00FFFFFF"
                 android:focusable="true"
-                android:src="@drawable/arrow_left" />
+                android:layout_marginEnd="30dp"
+                android:src="@drawable/arrow_left"
+                android:contentDescription="@string/undo_img_content" />
 
             <ImageButton
                 android:id="@+id/redo"
                 android:layout_width="35dp"
                 android:layout_height="35dp"
                 android:layout_gravity="start"
-                android:layout_marginStart="40dp"
-                android:layout_marginBottom="20dp"
                 android:background="#00FFFFFF"
                 android:focusable="true"
-                android:src="@drawable/arrow_right" />
+                android:layout_marginEnd="30dp"
+                android:src="@drawable/arrow_right"
+                android:contentDescription="@string/redo_img_content" />
 
             <ImageButton
                 android:id="@+id/clear"
                 android:layout_width="35dp"
                 android:layout_height="35dp"
                 android:layout_gravity="start"
-                android:layout_marginStart="40dp"
-                android:layout_marginBottom="20dp"
                 android:background="#00FFFFFF"
                 android:focusable="true"
-                android:src="@drawable/trash" />
+                android:src="@drawable/trash"
+                android:contentDescription="@string/clear_img_content" />
         </LinearLayout>
     </LinearLayout>
 

@@ -1,3 +1,8 @@
 <resources>
     <string name="app_name">Doodle</string>
+    <string name="palette_img_content">Palette</string>
+    <string name="erase_img_content">Erase</string>
+    <string name="undo_img_content">Undo</string>
+    <string name="redo_img_content">Redo</string>
+    <string name="clear_img_content">Clear</string>
 </resources>
