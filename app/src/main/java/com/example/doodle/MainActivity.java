@@ -1,5 +1,6 @@
 package com.example.doodle;
 
+import android.annotation.SuppressLint;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.graphics.Color;
@@ -16,150 +17,158 @@ import androidx.core.content.ContextCompat;
 
 import com.google.android.material.button.MaterialButton;
 
+import java.util.Objects;
+
 public class MainActivity extends AppCompatActivity {
 
-    ImageButton pallete, erase, undo, redo, clear;
+    ImageButton paletteBtn, eraseBtn, undoBtn, redoBtn, clearBtn;
     DrawingView drawingView;
-    SeekBar seekbar;
+    SeekBar seekBar;
     CardView cardView;
     LineImageView lineImageView;
-    MaterialButton redBtn, yellowBtn, greenBtn, blueBtn, purpleBtn, blackBtn;
+    MaterialButton redColorBtn, yellowColorBtn, greenColorBtn, blueColorBtn, purpleColorBtn, blackColorBtn;
+    private int paletteVisibility = View.GONE;
 
-    private int palleteVisibility = View.GONE;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
         drawingView = findViewById(R.id.drawing_view);
-        seekbar = findViewById(R.id.seekBar);
+        seekBar = findViewById(R.id.seekBar);
         lineImageView = findViewById(R.id.lineImageView);
         cardView = findViewById(R.id.cardView);
 
-        pallete = findViewById(R.id.pallete);
-        erase = findViewById(R.id.erase);
-        undo = findViewById(R.id.undo);
-        redo = findViewById(R.id.redo);
-        clear = findViewById(R.id.clear);
+        paletteBtn = findViewById(R.id.paletteBtn);
+        eraseBtn = findViewById(R.id.eraseBtn);
+        undoBtn = findViewById(R.id.undoBtn);
+        redoBtn = findViewById(R.id.redoBtn);
+        clearBtn = findViewById(R.id.clearBtn);
 
-        redBtn = findViewById(R.id.redColor);
-        yellowBtn = findViewById(R.id.yellowColor);
-        greenBtn = findViewById(R.id.greenColor);
-        blueBtn = findViewById(R.id.blueColor);
-        purpleBtn = findViewById(R.id.purpleColor);
-        blackBtn = findViewById(R.id.blackColor);
+        redColorBtn = findViewById(R.id.redColorBtn);
+        yellowColorBtn = findViewById(R.id.yellowColorBtn);
+        greenColorBtn = findViewById(R.id.greenColorBtn);
+        blueColorBtn = findViewById(R.id.blueColorBtn);
+        purpleColorBtn = findViewById(R.id.purpleColorBtn);
+        blackColorBtn = findViewById(R.id.blackColorBtn);
 
-        VectorDrawable brush = (VectorDrawable) ContextCompat.getDrawable(MainActivity.this, R.drawable.brush);
-        VectorDrawable eraser = (VectorDrawable) ContextCompat.getDrawable(MainActivity.this, R.drawable.eraser);
-        VectorDrawable arrow_right = (VectorDrawable) ContextCompat.getDrawable(MainActivity.this, R.drawable.arrow_right);
-        VectorDrawable arrow_left = (VectorDrawable) ContextCompat.getDrawable(MainActivity.this, R.drawable.arrow_left);
+        VectorDrawable paletteVD = (VectorDrawable) ContextCompat.getDrawable(MainActivity.this, R.drawable.palette);
+        VectorDrawable eraseVD = (VectorDrawable) ContextCompat.getDrawable(MainActivity.this, R.drawable.erase);
+        VectorDrawable redoVD = (VectorDrawable) ContextCompat.getDrawable(MainActivity.this, R.drawable.redo);
+        VectorDrawable undoVD = (VectorDrawable) ContextCompat.getDrawable(MainActivity.this, R.drawable.undo);
 
-        pallete.setOnClickListener(new View.OnClickListener() {
+        // Drawing menu options
+        paletteBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                unfillAll(brush, eraser, arrow_left, arrow_right);
-                brush.setTint(ContextCompat.getColor(getApplicationContext(), R.color.iconFocused));
-                pallete.setImageDrawable(brush);
+                resetTint(paletteVD, eraseVD, undoVD, redoVD);
+                paletteVD.setTint(ContextCompat.getColor(getApplicationContext(), R.color.iconClicked));
+                paletteBtn.setImageDrawable(paletteVD);
 
-                if (palleteVisibility == View.GONE) {
-                    palleteVisibility = View.VISIBLE;
-                } else {
-                    palleteVisibility = View.GONE;
-                }
-                cardView.setVisibility(palleteVisibility);
+                paletteVisibility = (paletteVisibility == View.GONE) ? View.VISIBLE : View.GONE;
+                cardView.setVisibility(paletteVisibility);
                 drawingView.setLineColor(drawingView.lineColor);
                 drawingView.setLineStroke(drawingView.strokeWidth);
             }
         });
-        erase.setOnClickListener(new View.OnClickListener() {
+        eraseBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                unfillAll(brush, eraser, arrow_left, arrow_right);
-                eraser.setTint(ContextCompat.getColor(getApplicationContext(), R.color.iconFocused));
-                erase.setImageDrawable(eraser);
-                cardView.setVisibility(View.GONE);
+                resetTint(paletteVD, eraseVD, undoVD, redoVD);
+                eraseVD.setTint(ContextCompat.getColor(getApplicationContext(), R.color.iconClicked));
+                eraseBtn.setImageDrawable(eraseVD);
                 drawingView.setEraserColor(Color.WHITE);
                 drawingView.setEraserStroke(15);
+                //cardView.setVisibility(View.GONE);
             }
         });
-        undo.setOnClickListener(new View.OnClickListener() {
+        undoBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                unfillAll(brush, eraser, arrow_left, arrow_right);
-                arrow_left.setTint(ContextCompat.getColor(getApplicationContext(), R.color.iconFocused));
-                undo.setImageDrawable(arrow_left);
+                resetTint(paletteVD, eraseVD, undoVD, redoVD);
+                undoVD.setTint(ContextCompat.getColor(getApplicationContext(), R.color.iconClicked));
+                undoBtn.setImageDrawable(undoVD);
                 drawingView.undo();
-                cardView.setVisibility(View.GONE);
+                //cardView.setVisibility(View.GONE);
 
             }
         });
-        redo.setOnClickListener(new View.OnClickListener() {
+        redoBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                unfillAll(brush, eraser, arrow_left, arrow_right);
-                arrow_right.setTint(ContextCompat.getColor(getApplicationContext(), R.color.iconFocused));
-                redo.setImageDrawable(arrow_right);
+                resetTint(paletteVD, eraseVD, undoVD, redoVD);
+                redoVD.setTint(ContextCompat.getColor(getApplicationContext(), R.color.iconClicked));
+                redoBtn.setImageDrawable(redoVD);
                 drawingView.redo();
-                cardView.setVisibility(View.GONE);
+                //cardView.setVisibility(View.GONE);
             }
         });
 
-        clear.setOnClickListener(new View.OnClickListener() {
+        clearBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 showAlertDialog();
             }
         });
 
-        redBtn.setOnClickListener(new View.OnClickListener() {
+
+        // Colors
+        // Please define colors in resource file rather than directly passing color hex code in parseColor method.
+        redColorBtn.setOnClickListener(new View.OnClickListener() {
+            @SuppressLint("ResourceType")
             @Override
             public void onClick(View view) {
-                lineImageView.setLineColor(Color.parseColor("#FF0000"));
-                drawingView.setLineColor(Color.parseColor("#FF0000"));
+                lineImageView.setLineColor(Color.parseColor(getResources().getString(R.color.red)));
+                drawingView.setLineColor(Color.parseColor(getResources().getString(R.color.red)));
             }
         });
 
-        yellowBtn.setOnClickListener(new View.OnClickListener() {
+        yellowColorBtn.setOnClickListener(new View.OnClickListener() {
+            @SuppressLint("ResourceType")
             @Override
             public void onClick(View view) {
-                lineImageView.setLineColor(Color.parseColor("#FFE500"));
-                drawingView.setLineColor(Color.parseColor("#FFE500"));
+                lineImageView.setLineColor(Color.parseColor(getResources().getString(R.color.yellow)));
+                drawingView.setLineColor(Color.parseColor(getResources().getString(R.color.yellow)));
             }
         });
 
-        greenBtn.setOnClickListener(new View.OnClickListener() {
+        greenColorBtn.setOnClickListener(new View.OnClickListener() {
+            @SuppressLint("ResourceType")
             @Override
             public void onClick(View view) {
-                lineImageView.setLineColor(Color.parseColor("#00FF0A"));
-                drawingView.setLineColor(Color.parseColor("#00FF0A"));
+                lineImageView.setLineColor(Color.parseColor(getResources().getString(R.color.green)));
+                drawingView.setLineColor(Color.parseColor(getResources().getString(R.color.green)));
             }
         });
 
-        blueBtn.setOnClickListener(new View.OnClickListener() {
+        blueColorBtn.setOnClickListener(new View.OnClickListener() {
+            @SuppressLint("ResourceType")
             @Override
             public void onClick(View view) {
-                lineImageView.setLineColor(Color.parseColor("#00B0FF"));
-                drawingView.setLineColor(Color.parseColor("#00B0FF"));
+                lineImageView.setLineColor(Color.parseColor(getResources().getString(R.color.blue)));
+                drawingView.setLineColor(Color.parseColor(getResources().getString(R.color.blue)));
             }
         });
 
-        purpleBtn.setOnClickListener(new View.OnClickListener() {
+        purpleColorBtn.setOnClickListener(new View.OnClickListener() {
+            @SuppressLint("ResourceType")
             @Override
             public void onClick(View view) {
-                lineImageView.setLineColor(Color.parseColor("#DA00FF"));
-                drawingView.setLineColor(Color.parseColor("#DA00FF"));
+                lineImageView.setLineColor(Color.parseColor(getResources().getString(R.color.purple)));
+                drawingView.setLineColor(Color.parseColor(getResources().getString(R.color.purple)));
             }
         });
 
-        blackBtn.setOnClickListener(new View.OnClickListener() {
+        blackColorBtn.setOnClickListener(new View.OnClickListener() {
+            @SuppressLint("ResourceType")
             @Override
             public void onClick(View view) {
-                lineImageView.setLineColor(Color.parseColor("#000000"));
-                drawingView.setLineColor(Color.parseColor("#000000"));
+                lineImageView.setLineColor(Color.parseColor(getResources().getString(R.color.black)));
+                drawingView.setLineColor(Color.parseColor(getResources().getString(R.color.black)));
             }
         });
 
-        seekbar.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
+        seekBar.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
             @Override
             public void onProgressChanged(SeekBar seekBar, int i, boolean b) {
                 lineImageView.setLineStroke((i + 1) * 10);
@@ -174,19 +183,20 @@ public class MainActivity extends AppCompatActivity {
         });
     }
 
-    protected void unfillAll(VectorDrawable brush, VectorDrawable eraser, VectorDrawable arrow_left, VectorDrawable arrow_right) {
-        brush.setTint(ContextCompat.getColor(getApplicationContext(), R.color.iconLight));
-        eraser.setTint(ContextCompat.getColor(getApplicationContext(), R.color.iconLight));
-        arrow_left.setTint(ContextCompat.getColor(getApplicationContext(), R.color.iconLight));
-        arrow_right.setTint(ContextCompat.getColor(getApplicationContext(), R.color.iconLight));
-        pallete.setImageDrawable(brush);
-        erase.setImageDrawable(eraser);
-        undo.setImageDrawable(arrow_left);
-        redo.setImageDrawable(arrow_right);
+    protected void resetTint(VectorDrawable paletteVD, VectorDrawable eraseVD,
+                            VectorDrawable undoVD, VectorDrawable redoVD) {
+        paletteVD.setTint(ContextCompat.getColor(getApplicationContext(), R.color.iconLight));
+        eraseVD.setTint(ContextCompat.getColor(getApplicationContext(), R.color.iconLight));
+        undoVD.setTint(ContextCompat.getColor(getApplicationContext(), R.color.iconLight));
+        redoVD.setTint(ContextCompat.getColor(getApplicationContext(), R.color.iconLight));
 
+        paletteBtn.setImageDrawable(paletteVD);
+        eraseBtn.setImageDrawable(eraseVD);
+        undoBtn.setImageDrawable(undoVD);
+        redoBtn.setImageDrawable(redoVD);
     }
 
-    private void showAlertDialog() {
+    public void showAlertDialog() {
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
         builder.setMessage("Are you sure you want to clear this doodle?")
                 .setPositiveButton("Clear", new DialogInterface.OnClickListener() {
@@ -196,12 +206,11 @@ public class MainActivity extends AppCompatActivity {
                 })
                 .setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialog, int whichButton) {
-
                     }
                 });
 
         AlertDialog alertDialog = builder.create();
-        alertDialog.getWindow().setBackgroundDrawableResource(R.drawable.rounded_alert);
+        Objects.requireNonNull(alertDialog.getWindow()).setBackgroundDrawableResource(R.drawable.rounded_alert);
         alertDialog.getWindow().setGravity(Gravity.BOTTOM);
         alertDialog.getWindow().getAttributes().y = 60;
         alertDialog.show();

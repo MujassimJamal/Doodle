@@ -1,8 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="black">#FF000000</color>
     <color name="iconLight">#807F7F</color>
-    <color name="white">#FFFFFF</color>
     <color name="headerView">#E7E7E7</color>
-    <color name="iconFocused">#FFC107</color>
+    <color name="iconClicked">#FFC107</color>
+
+    <color name="white">#FFFFFF</color>
+    <color name="black">#000000</color>
+    <color name="red">#FF0000</color>
+    <color name="yellow">#FFE500</color>
+    <color name="green">#00FF0A</color>
+    <color name="blue">#00B0FF</color>
+    <color name="purple">#DA00FF</color>
 </resources>

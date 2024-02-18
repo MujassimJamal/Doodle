@@ -85,7 +85,7 @@
                     android:orientation="horizontal">
 
                     <com.google.android.material.button.MaterialButton
-                        android:id="@+id/redColor"
+                        android:id="@+id/redColorBtn"
                         style="@style/Widget.MaterialComponents.ExtendedFloatingActionButton"
                         android:layout_width="20dp"
                         android:layout_height="20dp"
@@ -94,7 +94,7 @@
                         app:cornerRadius="28dp" />
 
                     <com.google.android.material.button.MaterialButton
-                        android:id="@+id/yellowColor"
+                        android:id="@+id/yellowColorBtn"
                         style="@style/Widget.MaterialComponents.ExtendedFloatingActionButton"
                         android:layout_width="20dp"
                         android:layout_height="20dp"
@@ -103,7 +103,7 @@
                         app:cornerRadius="28dp" />
 
                     <com.google.android.material.button.MaterialButton
-                        android:id="@+id/greenColor"
+                        android:id="@+id/greenColorBtn"
                         style="@style/Widget.MaterialComponents.ExtendedFloatingActionButton"
                         android:layout_width="20dp"
                         android:layout_height="20dp"
@@ -112,7 +112,7 @@
                         app:cornerRadius="28dp" />
 
                     <com.google.android.material.button.MaterialButton
-                        android:id="@+id/blueColor"
+                        android:id="@+id/blueColorBtn"
                         style="@style/Widget.MaterialComponents.ExtendedFloatingActionButton"
                         android:layout_width="20dp"
                         android:layout_height="20dp"
@@ -121,7 +121,7 @@
                         app:cornerRadius="28dp" />
 
                     <com.google.android.material.button.MaterialButton
-                        android:id="@+id/purpleColor"
+                        android:id="@+id/purpleColorBtn"
                         style="@style/Widget.MaterialComponents.ExtendedFloatingActionButton"
                         android:layout_width="20dp"
                         android:layout_height="20dp"
@@ -131,7 +131,7 @@
                         app:cornerRadius="28dp" />
 
                     <com.google.android.material.button.MaterialButton
-                        android:id="@+id/blackColor"
+                        android:id="@+id/blackColorBtn"
                         style="@style/Widget.MaterialComponents.ExtendedFloatingActionButton"
                         android:layout_width="20dp"
                         android:layout_height="20dp"
@@ -151,51 +151,51 @@
             android:orientation="horizontal">
 
             <ImageButton
-                android:id="@+id/pallete"
+                android:id="@+id/paletteBtn"
                 android:layout_width="35dp"
                 android:layout_height="35dp"
                 android:layout_gravity="start"
                 android:background="#00FFFFFF"
                 android:focusable="true"
                 android:layout_marginEnd="30dp"
-                android:src="@drawable/brush"
+                android:src="@drawable/palette"
                 android:contentDescription="@string/palette_img_content" />
 
             <ImageButton
-                android:id="@+id/erase"
+                android:id="@+id/eraseBtn"
                 android:layout_width="35dp"
                 android:layout_height="35dp"
                 android:layout_gravity="start"
                 android:background="#00FFFFFF"
                 android:focusable="true"
                 android:layout_marginEnd="30dp"
-                android:src="@drawable/eraser"
+                android:src="@drawable/erase"
                 android:contentDescription="@string/erase_img_content" />
 
             <ImageButton
-                android:id="@+id/undo"
+                android:id="@+id/undoBtn"
                 android:layout_width="35dp"
                 android:layout_height="35dp"
                 android:layout_gravity="start"
                 android:background="#00FFFFFF"
                 android:focusable="true"
                 android:layout_marginEnd="30dp"
-                android:src="@drawable/arrow_left"
+                android:src="@drawable/undo"
                 android:contentDescription="@string/undo_img_content" />
 
             <ImageButton
-                android:id="@+id/redo"
+                android:id="@+id/redoBtn"
                 android:layout_width="35dp"
                 android:layout_height="35dp"
                 android:layout_gravity="start"
                 android:background="#00FFFFFF"
                 android:focusable="true"
                 android:layout_marginEnd="30dp"
-                android:src="@drawable/arrow_right"
+                android:src="@drawable/redo"
                 android:contentDescription="@string/redo_img_content" />
 
             <ImageButton
-                android:id="@+id/clear"
+                android:id="@+id/clearBtn"
                 android:layout_width="35dp"
                 android:layout_height="35dp"
                 android:layout_gravity="start"
