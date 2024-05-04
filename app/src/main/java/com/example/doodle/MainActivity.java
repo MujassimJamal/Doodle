@@ -1,23 +1,34 @@
 package com.example.doodle;
 
+import android.Manifest;
 import android.annotation.SuppressLint;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
+import android.content.pm.PackageManager;
+import android.graphics.Bitmap;
 import android.graphics.Color;
 import android.graphics.drawable.VectorDrawable;
+import android.os.Build;
 import android.os.Bundle;
 import android.view.Gravity;
+import android.view.MotionEvent;
 import android.view.View;
 import android.widget.ImageButton;
+import android.widget.ImageView;
 import android.widget.SeekBar;
+import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.cardview.widget.CardView;
+import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
 
 import com.google.android.material.button.MaterialButton;
 
 import java.util.Objects;
+
+import kotlin.jvm.internal.MagicApiIntrinsics;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -26,9 +37,12 @@ public class MainActivity extends AppCompatActivity {
     SeekBar seekBar;
     CardView cardView;
     LineImageView lineImageView;
+    TextView titleView;
     MaterialButton redColorBtn, yellowColorBtn, greenColorBtn, blueColorBtn, purpleColorBtn, blackColorBtn;
     private int paletteVisibility = View.GONE;
+    private final int REQUEST_PERMISSION_WRITE_STORAGE = 1;
 
+    @SuppressLint("ClickableViewAccessibility")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -51,6 +65,8 @@ public class MainActivity extends AppCompatActivity {
         blueColorBtn = findViewById(R.id.blueColorBtn);
         purpleColorBtn = findViewById(R.id.purpleColorBtn);
         blackColorBtn = findViewById(R.id.blackColorBtn);
+
+        titleView = findViewById(R.id.titleView);
 
         VectorDrawable paletteVD = (VectorDrawable) ContextCompat.getDrawable(MainActivity.this, R.drawable.palette);
         VectorDrawable eraseVD = (VectorDrawable) ContextCompat.getDrawable(MainActivity.this, R.drawable.erase);
@@ -180,6 +196,38 @@ public class MainActivity extends AppCompatActivity {
 
             @Override
             public void onStopTrackingTouch(SeekBar seekBar) {}
+        });
+
+        titleView.setOnTouchListener(new View.OnTouchListener() {
+            @Override
+            public boolean onTouch(View v, MotionEvent event) {
+                if(event.getAction() == MotionEvent.ACTION_UP) {
+                    if(event.getRawX() >= titleView.getRight() - titleView.getTotalPaddingRight()) {
+                        // Build version identification
+                        if (Build.VERSION.SDK_INT < Build.VERSION_CODES.TIRAMISU) {
+                            Toast.makeText(MainActivity.this, "Failed to save the doodle. Unsupported android version detected!", Toast.LENGTH_SHORT).show();
+                            return true;
+                        }
+
+                        // Check storage permission
+                        int permissionCheck = ContextCompat.checkSelfPermission(
+                                    MainActivity.this, Manifest.permission.WRITE_EXTERNAL_STORAGE);
+                        if (permissionCheck != PackageManager.PERMISSION_GRANTED) {
+                            ActivityCompat.requestPermissions(MainActivity.this,
+                                    new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE},
+                                    REQUEST_PERMISSION_WRITE_STORAGE);
+                        }
+
+                        if (drawingView.saveBitmapToFile(getApplicationContext())) {
+                            Toast.makeText(MainActivity.this, "Doodle saved to Pictures!", Toast.LENGTH_SHORT).show();
+                        } else {
+                            Toast.makeText(MainActivity.this, "Failed to save the doodle!", Toast.LENGTH_SHORT).show();
+                        }
+                        return true;
+                    }
+                }
+                return true;
+            }
         });
     }
 

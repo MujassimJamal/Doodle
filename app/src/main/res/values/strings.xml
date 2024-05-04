@@ -5,4 +5,5 @@
     <string name="undo_img_content">Undo</string>
     <string name="redo_img_content">Redo</string>
     <string name="clear_img_content">Clear</string>
+    <string name="save_doodle_img_content">Save Doodle</string>
 </resources>

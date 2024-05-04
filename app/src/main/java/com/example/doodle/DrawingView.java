@@ -1,13 +1,25 @@
 package com.example.doodle;
 
 import android.content.Context;
+import android.content.ContextWrapper;
+import android.graphics.Bitmap;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
 import android.graphics.Path;
+import android.os.Environment;
 import android.util.AttributeSet;
+import android.util.Log;
 import android.view.MotionEvent;
 import android.view.View;
+import android.widget.Toast;
+
+import java.io.File;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.Locale;
 import java.util.Stack;
 
 public class DrawingView extends View {
@@ -118,5 +130,50 @@ public class DrawingView extends View {
 
     public void setEraserStroke(float width) {
         drawPaint.setStrokeWidth(width);
+    }
+
+    protected Bitmap getBitmap() {
+        /// Get Bitmap
+        Bitmap bitmap = Bitmap.createBitmap(this.getWidth(), this.getHeight(), Bitmap.Config.ARGB_8888);
+        Canvas canvas = new Canvas(bitmap);
+        canvas.drawColor(Color.WHITE);
+        this.draw(canvas);
+        return bitmap;
+    }
+
+    public boolean saveBitmapToFile(Context applicationContext) {
+        // Check if external storage is available
+        if (!Environment.getExternalStorageState().equals(Environment.MEDIA_MOUNTED)) {
+            Toast.makeText(applicationContext, "External storage is not available", Toast.LENGTH_SHORT).show();
+            return false;
+        }
+
+        File pictureFolder = Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_PICTURES);
+        File doodleFolder = new File(pictureFolder, "Doodle");
+
+        if (!doodleFolder.exists()) {
+            if (!doodleFolder.mkdirs()) {
+                Toast.makeText(applicationContext, "Failed to create Doodle folder", Toast.LENGTH_SHORT).show();
+                return false;
+            }
+        }
+
+        // Set unique filename
+        SimpleDateFormat formatter = new SimpleDateFormat("yyyyMMdd_HHmmss", Locale.getDefault());
+        String timestamp = formatter.format(new Date());
+        String filename = "Doodle_" + timestamp + ".png";
+        File file = new File(doodleFolder, filename);
+
+        // Save doodle to storage
+        boolean success;
+        try (FileOutputStream out = new FileOutputStream(file)) {
+            Bitmap bitmap = this.getBitmap();
+            success = bitmap.compress(Bitmap.CompressFormat.PNG, 100, out);
+        } catch (IOException e) {
+            e.printStackTrace();
+            success = false;
+        }
+
+        return success;
     }
 }
