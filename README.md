@@ -7,6 +7,10 @@ start anew! Doodle is perfect for kids and adults alike, offering a fun and rela
 way to express yourself. Whether it's doodling for fun or creating something
 special, my app makes it simple and enjoyable.</p>
 
+<h2><b>Demonstration</b></h2>
+
+![Doodle_demo (1)](https://github.com/MujassimJamal/doodle/assets/67727415/7eddc6c8-898f-4e9c-80bd-28b6eb781797)
+
 <h2><b>1. App Manifest</b></h2>
 <h3><b>AndroidManifest.xml:</b></h3>
 <p>The following code snippet is a part of my Android app's manifest file, where it
