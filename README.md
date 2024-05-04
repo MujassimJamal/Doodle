@@ -9,6 +9,9 @@ special, my app makes it simple and enjoyable.</p>
 
 <h2><b>Demonstration</b></h2>
 
+<span>Note: The GIF attached here for the demonstration may take few seconds (approx. <10s) to load.</span>
+
+
 ![Doodle_demo (1)](https://github.com/MujassimJamal/doodle/assets/67727415/7eddc6c8-898f-4e9c-80bd-28b6eb781797)
 
 <h2><b>1. App Manifest</b></h2>
